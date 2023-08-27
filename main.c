@@ -5,9 +5,7 @@
 *     This project is more about implimentin how the stack in most *
 * programing language works. Specifically using linked list aproch *
 */
-
-/* coment */
-//stack_t *stack;
+stack_t *stack;
 
 /**
 * main - the main function
