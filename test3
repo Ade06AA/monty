@@ -1,7 +1,10 @@
-push 555
-push 8881
-ppupppsh 8881
-zz  8881
-push 88
-push 442
+push 3
+push 65
+pall
+push 33
+push 22
+pall
+pall
+pall
+push 21
 pall

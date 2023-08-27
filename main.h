@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#define MAX_BUF_LEN 100
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,13 +38,22 @@ typedef struct instruction_s
 
 extern stack_t *stack;
 
-void firsts(char *buf, char **buf2, int *i);
-void free_stack();
+/* 1.c */
 void push(int n, char *a, char *b);
 void pall(void);
 void pint(int ln, char *a, char *b);
 void pop(int ln, char *a, char *b);
 void swap(int ln, char *a, char *b);
-void add(int ln, char *a, char *b);
+
+/* 2.c */
+void MyHandleFile(FILE **file, int ac, char *av[]);
+void MyInterpreter(int ar, int ln, char *buf, char *buf2);
+int MyRefineLine(int *ar, ssize_t t, int ln, char *buf, char **buf2);
+void firsts(char *buf, char **buf2, int *i);
 void myexit2(char *a, char *b);
+
+/* 3.c */
+void add(int ln, char *a, char *b);
+void free_stack(void);
+
 #endif

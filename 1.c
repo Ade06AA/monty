@@ -1,24 +1,11 @@
 #include "main.h"
 
-/**
-* free_stack - frees the stack
-* Return: void
-*/
-void free_stack()
-{
-	stack_t *temp;
-
-	while (stack != NULL)
-	{
-		temp = stack;
-		stack = stack->next;
-		free(temp);
-	}
-}
 
 /**
 * push - func name
 * @n: new value to be added
+*  @a: first bufer to be freed before exiting
+*  @b: second bufer to be freed before exiting
 * Return: ned head
 */
 void push(int n, char *a, char *b)
@@ -42,9 +29,9 @@ void push(int n, char *a, char *b)
 
 
 /**
-* print_dlistint - a function that prints out the content of
- * of a doubly nlinked list
-* Return: i - the amount of nodes
+* pall - a function that prints out the content of
+ * the stack
+* Return: void
 */
 void pall(void)
 {
@@ -64,6 +51,8 @@ void pall(void)
 /**
 * pint - print the first digit on the stack
 * @ln: represent the curent line to be used for error refrence
+*  @a: first bufer to be freed before exiting
+*  @b: second bufer to be freed before exiting
 * Return: void
 */
 void pint(int ln, char *a, char *b)
@@ -80,6 +69,8 @@ void pint(int ln, char *a, char *b)
 /**
 * pop - removes the first element on the stack
 * @ln: represent the curent line to be used for error refrence
+*  @a: first bufer to be freed before exiting
+*  @b: second bufer to be freed before exiting
 * Return: void
 */
 void pop(int ln, char *a, char *b)
@@ -105,6 +96,8 @@ void pop(int ln, char *a, char *b)
 /**
 * swap - swap the top two element on the stack
 * @ln: represent the curent line to be used for error refrence
+*  @a: first bufer to be freed before exiting
+*  @b: second bufer to be freed before exiting
 * Return: void
 */
 void swap(int ln, char *a, char *b)
@@ -134,93 +127,3 @@ void swap(int ln, char *a, char *b)
 		myexit2(a, b);
 	}
 }
-
-
-/**
-* add - add the first two element on the stack
-* @ln: represent the curent line to be used for error refrence
-* Return: void
-*/
-void add(int ln, char *a, char *b)
-{
-	int n, m;
-	stack_t *temp;
-
-	if (stack != NULL)
-		if (stack->next != NULL)
-		{
-			n = stack->n;
-			m = stack->next->n;
-			temp = stack->next;
-			temp->n = n + m;
-			free(stack);
-			stack = temp;
-		}
-		else
-		{
-			fprintf(stderr, "L%d: can't add, stack too short\n", ln);
-			free_stack();
-			myexit2(a, b);
-		}
-	else
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", ln);
-		free_stack();
-		myexit2(a, b);
-	}
-}
-
-
-
-/**
-* firsts - gets the first word in a string
-* @buf: the main string source
-* @buf2: buffer to contain the new  string
-* @i: aproximate to the lent of buf2
-* Return: void
-*/
-
-void firsts(char *buf, char **buf2, int *i)
-{
-	int t;
-
-	for (t = 0; buf[t] != '\0' && buf[t] != ' ' && buf[t] != '\n'; t++)
-		(*buf2)[t] = buf[t];
-
-
-	(*buf2)[t - 1] == '\0';
-	*i += t;
-}
-
-/*
-void firsts(char *buf, char *buf2, int *i)
-{
-	int t;
-
-	for (t = 0; t < 9 && *(buf + t) != '\0'; t++)
-	{
-		if ((buf + t) != NULL && *(buf + t) != '\n' && *(buf + t) != ' ')
-			buf2[t] = *(buf + t);
-		else
-			break;
-	}
-	buf2[t] == '\0';
-	i += t;
-}
- */
-
-/**
-* myexit2 - frees 2  variable and also frees the stack before exiting
-* @a: first element to be freed
-* @b: second element to be freed
-* Return: void
-*/
-void myexit2(char *a, char *b)
-{
-	free(a);
-	free(b);
-	free_stack();
-	exit(EXIT_FAILURE);
-}
-
-
