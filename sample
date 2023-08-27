@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+char *r = "ade 44 66";
+char *s = "44 ghu88i 55";
+char *t = "44";
+int a, b, c;
+printf("%d, %s\n", atoi(r+5),r);
+printf("%d, %s\n", atoi(s),s);
+printf("%d, %s\n", atoi(t),t);
+return 0;
+}
