@@ -1,6 +1,6 @@
 #include "main.h"
 
-/**
+/*
 *    ----PROJECT DESCRIPTION---    *
 *     This project is more about implimentin how the stack in most *
 * programing language works. Specifically using linked list aproch *
