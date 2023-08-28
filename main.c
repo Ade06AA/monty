@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /*
 *    ----PROJECT DESCRIPTION---    *
@@ -15,10 +15,10 @@ stack_t *stack;
 */
 int main(int ac, char *av[])
 {
-	int ln, ar, flag;
+	int ln, ar, flag = 0;
 	char *buf, *buf2;
 	ssize_t t = 0;
-	size_t nl;
+	size_t nl = 0;
 	FILE *file;
 
 	MyHandleFile(&file, ac, av);
@@ -34,11 +34,14 @@ int main(int ac, char *av[])
 			continue;
 		else if (flag == 2)
 			break;
-		printf("%d==%s", ln, buf);
 		MyInterpreter(ar, ln, buf, buf2);
 		ar = 0;
 		free(buf2);
 		free(buf);
+		buf = NULL;
+		buf2 = NULL;
 	}
+	fclose(file);
+	/*free_stack();*/
 	return (0);
 }

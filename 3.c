@@ -1,4 +1,16 @@
-#include "main.h"
+#include "monty.h"
+
+/*void free_stack(void)
+{
+ stack_t *temp = stack;
+
+ while (temp != NULL)
+ {
+	 stack_t *t = temp;
+	 temp = temp->next;
+	 free(t);
+ }
+}*/
 
 /**
 * free_stack - frees the stack

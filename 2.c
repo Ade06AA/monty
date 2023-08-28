@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
 * MyHandleFile - work on the file before interpreting
@@ -9,6 +9,7 @@
 */
 void MyHandleFile(FILE **file, int ac, char *av[])
 {
+	*file = NULL;
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: %s file\n", av[0]);
@@ -21,7 +22,7 @@ void MyHandleFile(FILE **file, int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 	*file = fopen(av[1], "r");
-	if (!(*file))
+	if (*file == NULL)
 	{
 		fprintf(stderr, "Error: can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
@@ -75,8 +76,9 @@ int MyRefineLine(int *ar, ssize_t t, int ln, char *buf, char **buf2)
 
 	if (t == -1)
 	{
-		free_stack();
-		myexit2(buf, *buf2);
+		free(buf);
+		free(*buf2);
+		return (2);
 	}
 	for (i = 0; buf[i] == ' '; i++)
 		;
@@ -84,6 +86,8 @@ int MyRefineLine(int *ar, ssize_t t, int ln, char *buf, char **buf2)
 	{
 		free(buf);
 		free(*buf2);
+		buf = NULL;
+		*buf2 = NULL;
 		return (1);
 	}
 	firsts(buf + i, buf2, &i);
@@ -96,8 +100,9 @@ int MyRefineLine(int *ar, ssize_t t, int ln, char *buf, char **buf2)
 		if (strcmp("push", *buf2) == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", ln);
-			free_stack();
-			myexit2(buf, *buf2);
+			free(buf);
+			free(buf2);
+			return (2);
 		}
 	}
 	return (0);
